@@ -1,0 +1,3 @@
+(define (map-values l f)
+  (if (null? l) ()
+      (cons (cons (car (car l)) (f (cdr (car l)))) (define (cdr l)))))

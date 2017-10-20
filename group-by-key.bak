@@ -1,0 +1,9 @@
+(load "assoc-all.scm")
+(load "remove-alist-all.scm")
+
+(define group-by-key
+  (lambda (l3)
+    (if (null? l3) '()
+        (cons (cons (car (car l3)) (assoc-all (car (car l3)) l3)) (group-by-key (remove-alist-all (car (car l3)) l3))))))
+       
+

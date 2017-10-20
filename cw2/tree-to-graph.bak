@@ -1,0 +1,10 @@
+(define tree-to-graph
+  (lambda (tree)
+    (create-graph tree "t")))
+    
+(define create-graph
+  (lambda (tree path)
+    (if (equal? (tree-tag tree) the-leaf-tag)
+        (list(list 'vertex (string->symbol path) (tree-labels tree)))
+        (append (list (list 'edge (string->symbol path) (string->symbol (string-append path "l")))) (list (list 'edge (string->symbol path) (string->symbol (string-append path "r")))) (list (list 'vertex (string->symbol path) (tree-labels tree))) (create-graph (node-left tree) (string-append path "l")) (create-graph (node-right tree) (string-append path "r"))))))
+

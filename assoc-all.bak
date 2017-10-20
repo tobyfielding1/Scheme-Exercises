@@ -1,0 +1,12 @@
+(define assoc-all
+  (lambda (x l)
+    (cond ((null? l) ’()) 
+          ((eq? x (car (car l))) (cons (cdr (car l)) (assoc-all x (cdr l))))
+          (else (assoc-all x (cdr l))))))
+
+(define remove
+  (lambda (s lsym)
+    (cond ((null? lsym) ’())
+          ((eq? (car lsym) s) (remove s (cdr lsym)))
+          (else (cons (car lsym)
+                      (remove s (cdr lsym)))))))

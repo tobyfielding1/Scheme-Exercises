@@ -1,0 +1,10 @@
+(define tree-merge
+  (lambda (tree1 tree2)
+    (if (and (equal? (tree-tag tree1) the-leaf-tag) (equal? (tree-tag tree2) the-leaf-tag))
+        (make-leaf (set-union (tree-labels tree1)(tree-labels tree2)))
+        (cond ((equal? (tree-tag tree1) the-leaf-tag)
+               (make-node (set-union (tree-labels tree1)(tree-labels tree2)) (node-left tree2) (node-right tree2)))
+              ((equal? (tree-tag tree2) the-leaf-tag)
+               (make-node (set-union (tree-labels tree1)(tree-labels tree2)) (node-left tree1) (node-right tree1)))
+              (else (make-node (set-union (tree-labels tree1)(tree-labels tree2)) (tree-merge (node-left tree1) (node-left tree2)) (tree-merge (node-right tree1) (node-right tree2))))
+        ))))
